@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Task2</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="id">ID :</string>
+    <string name="first_name">First Name :</string>
+    <string name="last_name">Last Name :</string>
+    <string name="email">Email :</string>
+    <string name="fetch_user_data">fetch User Data</string>
+    <string name="profile">Profile</string>
+
+
+</resources>
