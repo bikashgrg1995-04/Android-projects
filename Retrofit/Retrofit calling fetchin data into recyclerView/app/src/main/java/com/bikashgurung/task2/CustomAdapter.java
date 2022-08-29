@@ -110,5 +110,15 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
         return localDataSet.size();
     }
 
+    public void add(Users users) {
+        localDataSet.add(users);
+        notifyItemInserted(localDataSet.size() - 1);
+    }
+
+    public void addAll(List<Users> moveResults) {
+        for (Users result : moveResults) {
+            add(result);
+        }
+    }
 
 }

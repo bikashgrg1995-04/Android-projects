@@ -56,6 +56,12 @@ public class ListUserFragment extends Fragment {
         progressBar = view.findViewById(R.id.progress_circular);
         nestedSV = view.findViewById(R.id.idNestedSV);
 
+        adapter = new CustomAdapter(usersList);
+        LinearLayoutManager llm = new LinearLayoutManager(getContext());
+        llm.setOrientation(LinearLayoutManager.VERTICAL);
+        recyclerView.setLayoutManager(llm);
+        recyclerView.setAdapter(adapter);
+
         return view;
     }
 
@@ -73,6 +79,7 @@ public class ListUserFragment extends Fragment {
                 if (scrollY == v.getChildAt(0).getMeasuredHeight() - v.getMeasuredHeight()) {
                     // in this method we are incrementing page number,
                     // making progress bar visible and calling get data method.
+
                     page1++;
                     progressBar.setVisibility(View.VISIBLE);
                     getDataFromAPI(page1, per_page1);
@@ -104,12 +111,10 @@ public class ListUserFragment extends Fragment {
 
                     progressBar.setVisibility(View.GONE);
 
-                    usersList = responseData.getUsers();
-                    adapter = new CustomAdapter(usersList);
-                    LinearLayoutManager llm = new LinearLayoutManager(getContext());
-                    llm.setOrientation(LinearLayoutManager.VERTICAL);
-                    recyclerView.setLayoutManager(llm);
-                    recyclerView.setAdapter(adapter);
+                    usersList.addAll(responseData.getUsers());
+
+                    adapter.notifyDataSetChanged();
+
 
                 }
             }
