@@ -31,7 +31,11 @@ public class detailInfo extends Fragment {
     MaterialButton back;
     ProgressBar progressBar;
 
-    String getId, getFName, getLName, getEmail, getAvatar;
+    String getId;
+    String getFName;
+    String getLName;
+    String getEmail;
+    String getAvatar;
 
 
     public detailInfo() {
