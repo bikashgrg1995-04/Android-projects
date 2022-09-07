@@ -65,7 +65,11 @@ public class Login extends Fragment {
                     data[1] = password;
                     data[2] = email;
 
-                    PutData putData = new PutData("http://192.168.1.8/medcare/login.php", "POST", field, data);
+                    //for office
+                    PutData putData = new PutData("http://192.168.1.120/medcare/login.php", "POST", field, data);
+
+                    //for home
+                    //PutData putData = new PutData("http://192.168.1.8/medcare/login.php", "POST", field, data);
                     if (putData.startPut()) {
                         if (putData.onComplete()) {
                             String result = putData.getResult();

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "612981661859",
+    "project_id": "cloud-messaging-9197b",
+    "storage_bucket": "cloud-messaging-9197b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:612981661859:android:eb88a838258e841a385f16",
+        "android_client_info": {
+          "package_name": "com.bikashgurung.cloud_messaging"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "612981661859-aekdhqh076oa7ilusit28vf1olktcsvq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAwvoO-B5O3EY7J-E3jtppsv6IIO6CvkFY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "612981661859-aekdhqh076oa7ilusit28vf1olktcsvq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

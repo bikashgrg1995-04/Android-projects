@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
 
         sNavigationDrawer = findViewById(R.id.navigationDrawer);
 
+
         //Creating a list of menu Items
         List<MenuItem> menuItems = new ArrayList<>();
 
