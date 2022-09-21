@@ -1,12 +1,6 @@
 package com.bikashgurung.facedetection;
 
 
-import androidx.activity.result.ActivityResultCallback;
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -22,6 +16,12 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputLayout;
 import com.mikhaellopez.circularimageview.CircularImageView;
@@ -33,7 +33,6 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -44,20 +43,18 @@ import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
 
-     AutoCompleteTextView selectOption, selectStickerOption;
-     CircularImageView imageView;
-     MaterialButton convert, create, reset;
-     String style, id= null;
-     Uri uri;
-     ProgressBar progressBar, progressBar1;
-     ImageView stickerImage, convertedImage;
-     TextView text;
-     TextInputLayout layout;
-
-    private Face face = null;
-
-     ActivityResultLauncher<String> mGetImage;
+    AutoCompleteTextView selectOption, selectStickerOption;
+    CircularImageView imageView;
+    MaterialButton convert, create, reset;
+    String style, id = null;
+    Uri uri;
+    ProgressBar progressBar, progressBar1;
+    ImageView stickerImage, convertedImage;
+    TextView text;
+    TextInputLayout layout;
+    ActivityResultLauncher<String> mGetImage;
     ActivityResultLauncher<Intent> mCaptureImage;
+    private Face face = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,9 +70,9 @@ public class MainActivity extends AppCompatActivity {
                         imageView.setImageURI(result);
                         uri = result;
 
-                        if (uri!= null){
+                        if (uri != null) {
                             text.setVisibility(View.GONE);
-                        }else{
+                        } else {
                             text.setVisibility(View.VISIBLE);
                         }
 
@@ -83,12 +80,12 @@ public class MainActivity extends AppCompatActivity {
                 }
         );
 
-        mCaptureImage = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result ->{
-            if (result.getResultCode() == RESULT_OK){
+        mCaptureImage = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
+            if (result.getResultCode() == RESULT_OK) {
 
-                if (result!= null){
+                if (result != null) {
                     text.setVisibility(View.GONE);
-                }else{
+                } else {
                     text.setVisibility(View.VISIBLE);
                 }
 
@@ -154,7 +151,7 @@ public class MainActivity extends AppCompatActivity {
                 convertedImage.setImageURI(null);
                 if (convertedImage == null) {
 
-                }else{
+                } else {
                     Picasso.get().load(emptyUri).into(convertedImage);
                 }
 
@@ -165,7 +162,7 @@ public class MainActivity extends AppCompatActivity {
 
                 if (stickerImage == null) {
 
-                }else{
+                } else {
                     Picasso.get().load(emptyUri).into(stickerImage);
                 }
 
@@ -198,18 +195,18 @@ public class MainActivity extends AppCompatActivity {
                 System.out.println(imageUrl);
                 //Picasso.get().load(imageUrl).into(stickerImage);
                 Picasso.get().load(imageUrl).into(stickerImage, new com.squareup.picasso.Callback() {
-                            @Override
-                            public void onSuccess() {
-                                progressBar1.setVisibility(View.GONE);
-                                Toast.makeText(MainActivity.this, "Success", Toast.LENGTH_SHORT).show();
-                            }
+                    @Override
+                    public void onSuccess() {
+                        progressBar1.setVisibility(View.GONE);
+                        Toast.makeText(MainActivity.this, "Success", Toast.LENGTH_SHORT).show();
+                    }
 
-                            @Override
-                            public void onError(Exception e) {
-                                progressBar1.setVisibility(View.GONE);
-                                System.out.println(e.getMessage());
-                            }
-                        });
+                    @Override
+                    public void onError(Exception e) {
+                        progressBar1.setVisibility(View.GONE);
+                        System.out.println(e.getMessage());
+                    }
+                });
 
             }
 
@@ -228,7 +225,7 @@ public class MainActivity extends AppCompatActivity {
         if (uri == null) {
             progressBar.setVisibility(View.GONE);
             Toast.makeText(this, "Please select Image....", Toast.LENGTH_SHORT).show();
-        }else{
+        } else {
 
             System.out.println(uri);
             System.out.println(style);
@@ -247,11 +244,11 @@ public class MainActivity extends AppCompatActivity {
 
             // MultipartBody.Part is used to send also the actual file name
             MultipartBody.Part body =
-                  MultipartBody.Part.createFormData("photo", file.getName(), requestFile);
+                    MultipartBody.Part.createFormData("photo", file.getName(), requestFile);
 
             // finally, execute the request
-           Call<Result> call = RetrofitClient.getInstance().getApi().getImage(style, body);
-           call.enqueue(new Callback<Result>() {
+            Call<Result> call = RetrofitClient.getInstance().getApi().getImage(style, body);
+            call.enqueue(new Callback<Result>() {
                 @Override
                 public void onResponse(Call<Result> call, Response<Result> response) {
                     Result responseData = response.body();
@@ -267,24 +264,24 @@ public class MainActivity extends AppCompatActivity {
                         String faceId = face.getId();
                         String imageUrl = face.getUrl();
 
-                         Picasso.get().load(imageUrl).into(convertedImage, new com.squareup.picasso.Callback() {
-                        @Override
-                        public void onSuccess() {
-                            progressBar.setVisibility(View.GONE);
-                            Toast.makeText(MainActivity.this, "Success", Toast.LENGTH_SHORT).show();
-                            selectStickerOption.setEnabled(true);
-                            layout.setEnabled(true);
-                            create.setEnabled(true);
-                        }
+                        Picasso.get().load(imageUrl).into(convertedImage, new com.squareup.picasso.Callback() {
+                            @Override
+                            public void onSuccess() {
+                                progressBar.setVisibility(View.GONE);
+                                Toast.makeText(MainActivity.this, "Success", Toast.LENGTH_SHORT).show();
+                                selectStickerOption.setEnabled(true);
+                                layout.setEnabled(true);
+                                create.setEnabled(true);
+                            }
 
-                        @Override
-                        public void onError(Exception e) {
-                            progressBar.setVisibility(View.GONE);
-                            Toast.makeText(MainActivity.this, "Failed", Toast.LENGTH_SHORT).show();
-                            Log.i("error", e.getMessage());
-                        }
-                    });
-                         id = faceId;
+                            @Override
+                            public void onError(Exception e) {
+                                progressBar.setVisibility(View.GONE);
+                                Toast.makeText(MainActivity.this, "Failed", Toast.LENGTH_SHORT).show();
+                                Log.i("error", e.getMessage());
+                            }
+                        });
+                        id = faceId;
                     }
 
 
@@ -302,8 +299,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-   private File savefile(Uri imageUri)
-    {
+    private File savefile(Uri imageUri) {
         //create a file to write bitmap data
         File f = new File(getCacheDir(), "upload.jpg");
         try {
@@ -342,19 +338,19 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void selectImage() {
-        final CharSequence[] options = { "Take Photo", "Choose from Gallery","Cancel" };
+        final CharSequence[] options = {"Take Photo", "Choose from Gallery", "Cancel"};
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
         builder.setTitle("Add Photo!");
         builder.setItems(options, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int item) {
 
-                if (options[item].equals("Take Photo")){
+                if (options[item].equals("Take Photo")) {
 
                     Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                     mCaptureImage.launch(intent);
 
-                }else if (options[item].equals("Choose from Gallery")){
+                } else if (options[item].equals("Choose from Gallery")) {
                     mGetImage.launch("image/*");
                 } else if (options[item].equals("Cancel")) {
                     dialog.dismiss();
