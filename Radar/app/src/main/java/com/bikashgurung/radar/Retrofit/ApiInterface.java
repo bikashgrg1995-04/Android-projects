@@ -3,13 +3,11 @@ package com.bikashgurung.radar.Retrofit;
 
 import com.bikashgurung.radar.Retrofit.Model.List_Geofences.Example;
 
-import java.util.Map;
-
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Headers;
 import retrofit2.http.PUT;
-import retrofit2.http.QueryMap;
+import retrofit2.http.Query;
 
 public interface ApiInterface {
 

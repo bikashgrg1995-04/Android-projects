@@ -10,15 +10,16 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bikashgurung.radar.R;
 import com.bikashgurung.radar.Retrofit.Model.List_Geofences.Example;
+import com.bikashgurung.radar.Retrofit.Model.List_Geofences.Geofence;
 import com.google.android.material.textview.MaterialTextView;
 
 import java.util.List;
 
 public class GeofenceAdapter extends RecyclerView.Adapter<GeofenceAdapter.ViewHolder>{
 
-    private List<Example> localDataSet = null;
+    private List<Geofence> localDataSet = null;
 
-    public GeofenceAdapter(List<Example> localDataSet) {
+    public GeofenceAdapter(List<Geofence> localDataSet) {
         this.localDataSet = localDataSet;
     }
 
@@ -36,9 +37,9 @@ public class GeofenceAdapter extends RecyclerView.Adapter<GeofenceAdapter.ViewHo
 
         // Get element from your dataset at this position and replace the
         // contents of the view with that element
-        Example example = localDataSet.get(position);
-        String name = example.getGeofences().get(0).getExternalId();
-        String tag = example.getGeofences().get(0).getTag();
+        Geofence geofence = localDataSet.get(position);
+        String name = geofence.getDescription();
+        String tag = geofence.getTag();
 
         holder.getName().setText(name);
         holder.getTag().setText(tag);
