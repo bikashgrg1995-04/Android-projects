@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/cards"
+        android:enabled="true"
+        android:icon="@drawable/ic__credit_card"
+        android:title="@string/cards"/>
+
+    <item
+        android:id="@+id/offer"
+        android:enabled="true"
+        android:icon="@drawable/ic_offer_icon"
+        android:title="@string/offers"/>
+
+    <item
+        android:id="@+id/profile"
+        android:enabled="true"
+        android:icon="@drawable/ic_account_icon"
+        android:title="@string/account"/>
+
+
+</menu>

@@ -1,0 +1,37 @@
+<resources>
+    <string name="app_name">StoCard</string>
+    <string name="search">Search</string>
+    <string name="transaction">Transaction</string>
+    <string name="cards">Cards</string>
+    <string name="offers">Offers</string>
+    <string name="account">Account</string>
+
+    <string name="allow_manual_input" translatable="false">Allow input code manually</string>
+    <string name="scan_barcode_button" translatable="false">Scan Barcode</string>
+    <string name="barcode_result" translatable="false">Barcode detected.\n%1$s</string>
+    <string name="error_scanner_cancelled" translatable="false">Code scanner is cancelled.</string>
+    <string name="error_camera_permission_not_granted" translatable="false">Camera permission is not granted.</string>
+    <string name="error_app_name_unavailable" translatable="false">App name is not set.</string>
+    <string name="error_default_message" translatable="false">Failed to scan code: %1$s</string>
+    <string name="manual_input">MANUAL INPUT</string>
+    <string name="description">Description</string>
+    <string name="card_number">Card Number</string>
+    <string name="use_numeric_keyboard">USE Numeric KEYBOARD</string>
+    <string name="use_full_keyboard">USE FULL KEYBOARD</string>
+    <string name="scan_barcode">Scan Barcode</string>
+    <string name="title">title</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_list_nearest">ListNearest</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+
+    <string name="google_maps_key">AIzaSyAJXVZvxdsuKE_pnjVW-75c2ki076skvk0</string>
+
+</resources>

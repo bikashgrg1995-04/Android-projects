@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/Bikash/AndroidStudioProjects/StoCard/app/src/main/res/drawable/avatar_1.xml" value="0.22" />
+        <entry key="..\:/Users/Bikash/AndroidStudioProjects/StoCard/app/src/main/res/drawable/backdrop_shape.xml" value="0.1575" />
+        <entry key="..\:/Users/Bikash/AndroidStudioProjects/StoCard/app/src/main/res/drawable/barcode_field_box.xml" value="0.112" />
+        <entry key="..\:/Users/Bikash/AndroidStudioProjects/StoCard/app/src/main/res/drawable/ctr_bg.xml" value="0.1575" />
+        <entry key="..\:/Users/Bikash/AndroidStudioProjects/StoCard/app/src/main/res/drawable/ctrl_bg.xml" value="0.1575" />
+        <entry key="..\:/Users/Bikash/AndroidStudioProjects/StoCard/app/src/main/res/drawable/ic__credit_card.xml" value="0.22" />
+        <entry key="..\:/Users/Bikash/AndroidStudioProjects/StoCard/app/src/main/res/drawable/ic_account_icon.xml" value="0.22" />
+        <entry key="..\:/Users/Bikash/AndroidStudioProjects/StoCard/app/src/main/res/drawable/ic_add.xml" value="0.22" />
+        <entry key="..\:/Users/Bikash/AndroidStudioProjects/StoCard/app/src/main/res/drawable/ic_camera.xml" value="0.1575" />
+        <entry key="..\:/Users/Bikash/AndroidStudioProjects/StoCard/app/src/main/res/drawable/ic_offer_icon.xml" value="0.191" />
+        <entry key="..\:/Users/Bikash/AndroidStudioProjects/StoCard/app/src/main/res/drawable/ic_stocard_logo.xml" value="0.191" />
+        <entry key="..\:/Users/Bikash/AndroidStudioProjects/StoCard/app/src/main/res/drawable/shape.xml" value="0.1575" />
+        <entry key="..\:/Users/Bikash/AndroidStudioProjects/StoCard/app/src/main/res/drawable/side_nav_bar.xml" value="0.22" />
+        <entry key="..\:/Users/Bikash/AndroidStudioProjects/StoCard/app/src/main/res/layout/activity_add_cards.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Bikash/AndroidStudioProjects/StoCard/app/src/main/res/layout/activity_addcards.xml" value="0.5776942355889725" />
+        <entry key="..\:/Users/Bikash/AndroidStudioProjects/StoCard/app/src/main/res/layout/activity_get_card_details.xml" value="0.264" />
+        <entry key="..\:/Users/Bikash/AndroidStudioProjects/StoCard/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Bikash/AndroidStudioProjects/StoCard/app/src/main/res/layout/activity_scanner.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Bikash/AndroidStudioProjects/StoCard/app/src/main/res/layout/activity_show_card_details.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Bikash/AndroidStudioProjects/StoCard/app/src/main/res/layout/card_item.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Bikash/AndroidStudioProjects/StoCard/app/src/main/res/layout/content_main.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Bikash/AndroidStudioProjects/StoCard/app/src/main/res/layout/fragment_home.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Bikash/AndroidStudioProjects/StoCard/app/src/main/res/layout/list_all_cards_item.xml" value="0.190625" />
+        <entry key="..\:/Users/Bikash/AndroidStudioProjects/StoCard/app/src/main/res/layout/nav_header_main.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Bikash/AndroidStudioProjects/StoCard/app/src/main/res/layout/show_card_details.xml" value="0.264" />
+        <entry key="..\:/Users/Bikash/AndroidStudioProjects/StoCard/app/src/main/res/layout/story_full_screen.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Bikash/AndroidStudioProjects/StoCard/app/src/main/res/layout/story_item.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Bikash/AndroidStudioProjects/StoCard/app/src/main/res/menu/bottom_navigation.xml" value="0.11302083333333333" />
+        <entry key="..\:/Users/Bikash/AndroidStudioProjects/StoCard/app/src/main/res/menu/bottom_navigation_menu.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Bikash/AndroidStudioProjects/StoCard/app/src/main/res/menu/top_app_bar.xml" value="0.12708333333333333" />
+        <entry key="..\:/Users/Bikash/AndroidStudioProjects/StoCard/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.124" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

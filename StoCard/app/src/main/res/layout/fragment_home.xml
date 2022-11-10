@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".HomeFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/black">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/APL"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/appBar_color">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/titleImage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:src="@drawable/stocard_icon"
+                    android:contentDescription="@string/title" />
+
+
+                <androidx.appcompat.widget.SearchView
+                    android:id="@+id/home_search_bar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_toLeftOf="@+id/transaction"
+                    app:closeIcon="@drawable/ic_close"
+                    app:queryBackground="@color/light_grey"
+                    app:queryHint="Search"
+                    app:searchHintIcon="@drawable/ic_search_icon"
+                    app:searchIcon="@drawable/ic_search_icon" />
+
+                <ImageView
+                    android:id="@+id/transaction"
+                    android:layout_width="30dp"
+                    android:layout_height="40dp"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/transaction_icon"
+                    android:layout_toLeftOf="@+id/geofenceSwitch"/>
+
+                <com.google.android.material.switchmaterial.SwitchMaterial
+                    android:id="@+id/geofenceSwitch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Geofence"
+                    android:textColor="@color/white"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    />
+
+            </RelativeLayout>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <LinearLayout
+            android:id="@+id/ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/APL">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/storyList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textHome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ll"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:text="CARDS"
+            android:textColor="#989898"
+            android:textSize="20sp"
+            android:typeface="monospace" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/card_grid"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/textHome"
+            />
+
+        <LinearLayout
+            android:id="@+id/checking"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textHome"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="50dp"
+            android:background="@color/white"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:fontFamily="sans-serif-black"
+                android:text="Latitude:" />
+
+            <TextView
+                android:id="@+id/latTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:text="Latitude will be here! "
+                android:textColor="#000000" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:fontFamily="sans-serif-black"
+                android:text="Longitude:" />
+
+            <TextView
+                android:id="@+id/lonTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:text="Longitude will be here! "
+                android:textColor="#000000" />
+
+
+        </LinearLayout>
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnAdd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_margin="20dp"
+            android:background="@drawable/shape"
+            android:drawableLeft="@drawable/ic_add"
+            android:text="ADD CARD"
+            android:textColor="@color/black"
+            app:backgroundTint="@color/skyBlue"
+            android:layout_alignParentBottom="true"/>
+
+    </RelativeLayout>
+
+</FrameLayout>
