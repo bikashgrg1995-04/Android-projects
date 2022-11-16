@@ -1,11 +1,13 @@
 package com.bikashgurung.stocard;
 
-import android.app.PendingIntent;
-import android.app.Service;
+import static android.content.Context.MODE_PRIVATE;
+
+import android.Manifest;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.IBinder;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,8 +17,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.widget.SearchView;
+import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -25,28 +27,17 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bikashgurung.stocard.DB.AppDatabase;
 import com.bikashgurung.stocard.DB.DBModel;
-import com.bikashgurung.stocard.DB.DestinationModel;
-import com.bikashgurung.stocard.DB.PassingDataModel;
-import com.bikashgurung.stocard.DB.StoreModel;
-import com.bikashgurung.stocard.Retrofit.ApiInterface;
-import com.bikashgurung.stocard.Retrofit.Distance.DistanceResponse;
-import com.bikashgurung.stocard.Retrofit.Distance.Element;
-import com.bikashgurung.stocard.Retrofit.RetrofitClient;
+import com.bikashgurung.stocard.Receiver.MyRadarReceiver;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.switchmaterial.SwitchMaterial;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+import io.radar.sdk.Radar;
+import io.radar.sdk.RadarTrackingOptions;
 
 public class HomeFragment extends Fragment {
-
-    private static final String TAG = "MainActivity";
 
     RecyclerView storyList, cardGrid;
     MaterialButton addCard;
@@ -58,16 +49,10 @@ public class HomeFragment extends Fragment {
 
     StoryAdapter adapter1;
     ImageView imageView, transactionIcon;
-    LinearLayout storyLayout, locationLayout;
+    LinearLayout storyLayout;
     SwitchMaterial geofenceController;
-
+    MyRadarReceiver receiver;
     private CardAdapter cardAdapter;
-    private GpsTracker gpsTracker;
-
-    Double user_longitude, user_latitude;
-    Handler handler = new Handler();
-    Runnable runnable;
-    int delay = 5000;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -84,6 +69,8 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
+
+        receiver = new MyRadarReceiver();
 
         storyLayout = view.findViewById(R.id.ll);
 
@@ -155,31 +142,28 @@ public class HomeFragment extends Fragment {
         latitudeTextView = view.findViewById(R.id.latTextView);
         longitudeTextView = view.findViewById(R.id.lonTextView);
 
-        locationLayout = view.
-                findViewById(R.id.checking);
 
         geofenceController = view.findViewById(R.id.geofenceSwitch);
+
+        SharedPreferences sharedPrefs = requireActivity().getSharedPreferences("Tracking", MODE_PRIVATE);
+        geofenceController.setChecked(sharedPrefs.getBoolean("state", false));
+
         geofenceController.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                SharedPreferences.Editor editor = requireActivity().getSharedPreferences("Tracking", MODE_PRIVATE).edit();
                 if (isChecked) {
-                    cardGrid.setVisibility(View.GONE);
-                    locationLayout.setVisibility(View.VISIBLE);
-                    //Toast.makeText(getContext(), "Foreground/Background Service starts.", Toast.LENGTH_SHORT).show();
-                    /*handler.postDelayed(runnable = new Runnable() {
-                        public void run() {
-                            handler.postDelayed(runnable, delay);
-                            getUserLocation();
+                    editor.putBoolean("state", true);
+                    editor.apply();
 
-                            //Toast.makeText(ForegroundService.this, "Tracking",Toast.LENGTH_SHORT).show();
-                        }
-                    }, delay);*/
                     startService();
+                    Radar.initialize(getContext(), "prj_test_pk_0b2ba74435d0b678338d3628f17e011a3ade1c7a", receiver, Radar.RadarLocationServicesProvider.GOOGLE);
+                    Radar.setDescription("This is my Phone");
+
                 } else {
-                    cardGrid.setVisibility(View.VISIBLE);
-                    locationLayout.setVisibility(View.GONE);
-                    //Toast.makeText(getContext(), "Foreground/Background Service stops.", Toast.LENGTH_SHORT).show();
-                    //stopForegroundService();
+                    editor.putBoolean("state", false);
+                    editor.apply();
+
                     stopService();
                 }
             }
@@ -189,20 +173,58 @@ public class HomeFragment extends Fragment {
         return view;
     }
 
-    public void startService() {
-        Intent serviceIntent = new Intent(getActivity(), ForegroundService.class);
-        serviceIntent.putExtra("inputExtra", "StoCard is running in background.");
-        ContextCompat.startForegroundService(getContext(), serviceIntent);
+    private void startService() {
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+
+            if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION)
+                    != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(requireActivity(), new String[]{
+                        Manifest.permission.ACCESS_FINE_LOCATION,
+                        Manifest.permission.ACCESS_COARSE_LOCATION
+                }, 100);
+            } else if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_BACKGROUND_LOCATION)
+                    != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(requireActivity(), new String[]{
+                        Manifest.permission.ACCESS_BACKGROUND_LOCATION
+                }, 102);
+            } else {
+                Toast.makeText(getContext(), "Granted", Toast.LENGTH_SHORT).show();
+
+
+                RadarTrackingOptions trackingOptions = RadarTrackingOptions.CONTINUOUS;
+                trackingOptions.getForegroundServiceEnabled();
+                Radar.startTracking(trackingOptions);
+
+              /*  Radar.trackOnce(RadarTrackingOptions.RadarTrackingOptionsDesiredAccuracy.HIGH, true, new Radar.RadarTrackCallback() {
+                    @Override
+                    public void onComplete(@NonNull Radar.RadarStatus radarStatus, @Nullable Location location, @Nullable RadarEvent[] radarEvents, @Nullable RadarUser radarUser) {
+                        receiver.onEventsReceived(MainActivity.this, radarEvents, radarUser);
+                    }
+                });*/
+            }
+        } else {
+
+            if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION)
+                    != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(requireActivity(), new String[]{
+                        Manifest.permission.ACCESS_FINE_LOCATION,
+                        Manifest.permission.ACCESS_COARSE_LOCATION
+                }, 100);
+            } else {
+                Toast.makeText(getContext(), "Granted", Toast.LENGTH_SHORT).show();
+
+
+                RadarTrackingOptions trackingOptions = RadarTrackingOptions.CONTINUOUS;
+                trackingOptions.getForegroundServiceEnabled();
+                Radar.startTracking(trackingOptions);
+            }
+        }
+
     }
 
     public void stopService() {
-        /*Intent serviceIntent = new Intent(getActivity(), ForegroundService.class);
-        stopService();*/
-
-    }
-
-    private void stopForegroundService() {
-        //handler.removeCallbacks(runnable);
+        Radar.stopTracking();
     }
 
     private void listAddedCards() {
@@ -235,20 +257,6 @@ public class HomeFragment extends Fragment {
 
         storyList.setLayoutManager(llm);
         storyList.setAdapter(adapter1);
-    }
-
-    private void getUserLocation() {
-        gpsTracker = new GpsTracker(getContext());
-        if (gpsTracker.canGetLocation()) {
-            user_latitude = gpsTracker.getLatitude();
-            user_longitude = gpsTracker.getLongitude();
-
-            latitudeTextView.setText(String.valueOf(user_latitude));
-            longitudeTextView.setText(String.valueOf(user_longitude));
-
-        } else {
-            gpsTracker.showSettingsAlert();
-        }
     }
 
     private void loadUserList() {

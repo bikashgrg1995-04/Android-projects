@@ -67,12 +67,16 @@ dependencies {
     implementation 'com.journeyapps:zxing-android-embedded:4.1.0'
 
     //google play services
-    implementation 'com.google.android.gms:play-services-location:21.0.0'
+    //implementation 'com.google.android.gms:play-services-location:21.0.0'
     implementation 'com.google.android.gms:play-services-maps:18.1.0'
 
     //Retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.9.0' // This is use for Retrofit.
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0' // This is use for Covert to gson.
     implementation 'com.squareup.okhttp3:logging-interceptor:4.9.3' // This Is use for log checking.
+
+    //Radar
+    implementation 'io.radar:sdk:3.5.+'
+
 
 }

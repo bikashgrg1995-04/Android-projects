@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
 
         fetchGeofenceList();
 
-        create = findViewById(R.id.create);
+        /*create = findViewById(R.id.create);
         create.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "Creating Geofences", Toast.LENGTH_SHORT).show();
 
             }
-        });
+        });*/
 
 
         geofenceController = findViewById(R.id.geofenceSwitch);
